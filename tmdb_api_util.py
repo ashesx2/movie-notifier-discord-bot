@@ -62,7 +62,10 @@ def fetch_upcoming_movies() -> list[tuple[str, date]]:
         # Add movies to list.
         for movie in data["results"]:
             movie_id = int(movie["id"])
-            release_date = date.fromisoformat(movie["release_date"])
+            if movie["release_date"]:
+                release_date = date.fromisoformat(movie["release_date"])
+            else:
+                release_date = None
             upcoming_movie = (movie_id, release_date)
             upcoming_movies.append(upcoming_movie)
 

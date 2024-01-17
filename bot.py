@@ -119,7 +119,8 @@ class MovieBot(commands.Bot):
         today = date.today()
         new_releases = []
         for movie_id, release_date in upcoming_movies:
-            if today <= release_date <= today + timedelta(days=7):
+            if (release_date and
+                today <= release_date <= today + timedelta(days=7)):
                 new_releases.append(movie_id)
 
         # Filter new releases further to send notifications for movies
